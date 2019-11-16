@@ -200,25 +200,31 @@ double Postfix::calculate()
 			if (numbers.empty()) throw("Wrong input");
 			temp = numbers.top();
 			numbers.pop();
-			if(numbers.empty()) throw("Wrong input");
 			switch (data[i][0])
 			{
 			case('+'):
 				temp = numbers.top() + temp;
+				numbers.pop();
 				break;
 			case('-'):
-				temp = numbers.top() - temp;
+				if (numbers.empty()) temp = -temp;
+				else
+				{
+					temp = numbers.top() - temp;
+					numbers.pop();
+				}
 				break;
 			case('*'):
 				temp = numbers.top() * temp;
+				numbers.pop();
 				break;
 			case('/'):
 				temp = numbers.top() / temp;
+				numbers.pop();
 				break;
 			default:
 				throw("Wrong input");
 			}
-			numbers.pop();
 			numbers.push(temp);
 		}
 	}
