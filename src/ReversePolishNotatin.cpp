@@ -124,7 +124,9 @@ void Postfix::parse(const string str, vector<string>& data)
 		{
 
 			unaryTransf(number); // --n -> n; ++n -> n
-			try { stod(number); } // checking to the correct number
+			try {
+				if (number != "") stod(number); // for --
+			} // checking to the correct number
 			catch (exception & e)
 			{
 				throw("Wrong input");
